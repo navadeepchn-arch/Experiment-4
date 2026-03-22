@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Experiment 4</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <div class="title">Experiment 4</div>
+  <div class="tabs">
+    <a onclick="showPage('p41', this)" class="active">4.1</a>
+    <a onclick="showPage('p42', this)">4.2</a>
+    <a onclick="showPage('p43', this)">4.3</a>
+  </div>
+</nav>
+
+<div id="p41" class="page active">
+  <h2>CLI Employee Management</h2>
+  <div class="card">
+    <h3>Add Employee</h3>
+    <div class="form-row">
+      <input id="e-name" placeholder="Full Name" />
+      <input id="e-email" placeholder="Email" />
+    </div>
+    <div class="form-row">
+      <input id="e-dept" placeholder="Department" />
+      <input id="e-sal" type="number" placeholder="Salary" />
+    </div>
+    <button class="btn btn-blue" onclick="addEmp()">Add Employee</button>
+  </div>
+  <div class="card">
+    <h3>Search</h3>
+    <div class="form-row single">
+      <input id="e-search" placeholder="Search by name or email..." oninput="renderEmps()" />
+    </div>
+  </div>
+  <div class="list-wrap" id="emp-list">
+    <div class="empty-msg">No employees yet. Add one above.</div>
+  </div>
+</div>
+
+<div id="p42" class="page">
+  <h2>Playing Card Collection API</h2>
+  <div class="card">
+    <h3>Add Card — POST /api/cards</h3>
+    <div class="form-row">
+      <select id="c-suit">
+        <option value="">Select Suit</option>
+        <option>Hearts</option><option>Diamonds</option>
+        <option>Clubs</option><option>Spades</option>
+      </select>
+      <select id="c-value">
+        <option value="">Select Value</option>
+        <option>2</option><option>3</option><option>4</option><option>5</option>
+        <option>6</option><option>7</option><option>8</option><option>9</option>
+        <option>10</option><option>Jack</option><option>Queen</option>
+        <option>King</option><option>Ace</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <select id="c-cond">
+        <option>Mint</option><option>Good</option>
+        <option>Fair</option><option>Poor</option>
+      </select>
+      <input id="c-notes" placeholder="Notes (optional)" />
+    </div>
+    <button class="btn btn-blue" onclick="addCard()">POST /api/cards</button>
+  </div>
+  <div class="card">
+    <h3>Filter — GET /api/cards</h3>
+    <div class="form-row">
+      <select id="c-filter" onchange="renderCards()">
+        <option value="">All Suits</option>
+        <option>Hearts</option><option>Diamonds</option>
+        <option>Clubs</option><option>Spades</option>
+      </select>
+      <button class="btn btn-green" onclick="showStats()">GET /api/stats/summary</button>
+    </div>
+  </div>
+  <div class="list-wrap" id="card-list">
+    <div class="empty-msg">No cards yet. Add one above.</div>
+  </div>
+  <div class="response-box" id="card-response">Awaiting request...</div>
+</div>
+
+<div id="p43" class="page">
+  <h2>Concurrent Ticket Booking</h2>
+  <div class="card">
+    <h3>Book a Seat</h3>
+    <div class="form-row">
+      <select id="t-event">
+        <option value="EVT001">IPL Final 2025 (50 seats)</option>
+        <option value="EVT002">Ed Sheeran Live (30 seats)</option>
+        <option value="EVT003">TechConf 2025 (20 seats)</option>
+      </select>
+      <input id="t-user" placeholder="User ID (e.g. user1)" />
+    </div>
+    <div class="form-row">
+      <button class="btn btn-blue" onclick="lockSeat()">POST /api/lock</button>
+      <button class="btn btn-green" onclick="bookSeat()">POST /api/book</button>
+    </div>
+    <button class="btn btn-red" onclick="cancelBooking()">DELETE /api/booking</button>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="num green" id="s-avail">—</div><div class="lbl">Available</div></div>
+    <div class="stat-box"><div class="num orange" id="s-locked">0</div><div class="lbl">Locked</div></div>
+    <div class="stat-box"><div class="num red" id="s-booked">0</div><div class="lbl">Booked</div></div>
+    <div class="stat-box"><div class="num blue" id="s-total">—</div><div class="lbl">Total</div></div>
+  </div>
+  <div class="legend">
+    <span><span class="dot free"></span> Free</span>
+    <span><span class="dot locked2"></span> Locked</span>
+    <span><span class="dot booked2"></span> Booked</span>
+    <span><span class="dot mine2"></span> Yours</span>
+  </div>
+  <div class="seat-grid" id="seat-grid"></div>
+  <div class="response-box" id="ticket-response">Select an event and enter your User ID to begin.</div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
