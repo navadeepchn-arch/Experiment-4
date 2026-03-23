@@ -1,0 +1,12 @@
+{
+  "name": "cli-employee-management",
+  "version": "1.0.0",
+  "description": "CLI Employee Management System using Node.js",
+  "main": "employee.js",
+  "scripts": {
+    "start": "node employee.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
